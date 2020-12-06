@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- Dec 06, 2020 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Investigating the Internet using Lisp</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Marcus Santos" />
+<link rel='icon' type='image/x-icon' href='/images/favicon.ico'/>
+<meta name='viewport' content='width=device-width, initial-scale=1'>
+<link rel='stylesheet' href='https://code.cdn.mozilla.net/fonts/fira.css'>
+<link rel='stylesheet' href='css/site.css?v=2' type='text/css'/>
+<link rel='stylesheet' href='css/custom.css' type='text/css'/>
+<link rel='stylesheet' href='css/syntax-coloring.css' type='text/css'/>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2020 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="org-div-home-and-up">
+ <a accesskey="h" href="/"> UP </a>
+ |
+ <a accesskey="H" href="/"> HOME </a>
+</div><header id="top" class="status">
+<div class='intro'>
+  <!--
+  <img src='/images/about/profile.png' alt='Marcus Santos' class='no-border'/>
+  -->
+  <h1>
+    <span class="gray">Marcus</span>
+    <span class="black">Santos</span>
+  </h1>
+  <p>Emacser</p>
+</div>
+
+<div class='nav'>
+<ul>
+<li><a href='/'>Blog</a>.</li>
+<li><a href='http://github.com/'>GitHub</a>.</li>
+<!--
+<li><a href='https://www.reddit.com/user/'>Reddit</a>.</li>
+<li><a href='/index.xml'>RSS</a>.</li>
+-->
+<li><a href='/about/'>About</a></li>
+</ul>
+</div>
+</header>
+<main id="content">
+<h1 class="title">Investigating the Internet using Lisp
+<br />
+<span class="subtitle">Published on Oct 13, 2020 by Marcus Santos.</span>
+</h1>
+
+<section id="outline-container-orgcfb6189" class="outline-2">
+<h2 id="orgcfb6189">Preamble</h2>
+<div class="outline-text-2" id="text-orgcfb6189">
+<p>
+This article was originally written by E. Costa and sent to the members of the Della Vos group. The text below is a translation from the original in Portuguese, with some minor editorial additions.
+</p>
+</div>
+</section>
+
+<section id="outline-container-org04a3b81" class="outline-2">
+<h2 id="org04a3b81">Investigating the internet using Lisp</h2>
+<div class="outline-text-2" id="text-org04a3b81">
+<p>
+There are two ways to investigate Internet content with Lisp. The first is to use an http client tool, for example:
+</p>
+
+<p>
+<a href="https://edicl.github.io/drakma/">https://edicl.github.io/drakma/</a>
+</p>
+
+<p>
+<a href="https://github.com/fukamachi/dexador">https://github.com/fukamachi/dexador</a>
+</p>
+
+<p>
+<a href="https://github.com/orthecreedence/carrier">https://github.com/orthecreedence/carrier</a>
+</p>
+
+<p>
+<a href="https://github.com/fukamachi/fast-http">https://github.com/fukamachi/fast-http</a>
+</p>
+
+<p>
+<a href="https://github.com/svenvc/s-http-client">https://github.com/svenvc/s-http-client</a>
+</p>
+
+<p>
+The last four http clients are better than drakma, for their small footprint.
+</p>
+
+<p>
+For best results, you should also use a natural language processing system, such as the tagger:
+</p>
+
+<p>
+<a href="https://github.com/g000001/tagger">https://github.com/g000001/tagger</a>
+</p>
+
+<p>
+Of course, if you use the tagger or another system in Common Lisp, don&rsquo;t forget to use quicklisp to install. A good example of how to show results and make research reports on the Internet is this COVID-19 data exploration system:
+</p>
+
+<p>
+<a href="https://github.com/dnaeon/cl-covid19">https://github.com/dnaeon/cl-covid19</a>
+</p>
+
+<p>
+Of course, what I mentioned above is for amateur systems. If you really want powerful systems, then you&rsquo;ll need to contact Cycorp:
+</p>
+
+<p>
+<a href="https://www.cyc.com/">https://www.cyc.com/</a>
+</p>
+
+<p>
+Cycorp offers powerful natural language resources and is being used in large projects, such as the Cleveland Clinic&rsquo;s natural language interface for biomedical information:
+</p>
+
+<p>
+<a href="https://my.clevelandclinic.org/">https://my.clevelandclinic.org/</a>
+</p>
+</div>
+</section>
+</main>
+<footer id="postamble" class="status">
+<div class='footer'>
+  Copyright © 2020 <a href='mailto:m3santos@ryerson.ca'>Marcus Santos.</a><br>
+  Inspired by <a href='https://nicolas.petton.fr'>https://nicolas.petton.fr</a> <br>
+  Last updated on Dec 06, 2020. Generated using <a href="https://www.gnu.org/software/emacs/">Emacs</a> 27.1 (<a href="https://orgmode.org">Org</a> mode 9.3.7).
+</div>
+</footer>
+</body>
+</html>
