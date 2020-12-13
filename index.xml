@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0"
+     xmlns:content="http://purl.org/rss/1.0/modules/content/"
+     xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+     xmlns:dc="http://purl.org/dc/elements/1.1/"
+     xmlns:atom="http://www.w3.org/2005/Atom"
+     xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+     xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+     xmlns:georss="http://www.georss.org/georss"
+     xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"
+     xmlns:media="http://search.yahoo.com/mrss/"><channel>
+  <title>Blog Index</title>
+  <atom:link href="http://example.com/index.xml" rel="self" type="application/rss+xml" />
+  <link>http://example.com/</link>
+  <description><![CDATA[]]></description>
+  <language>en</language>
+  <pubDate>Sat, 12 Dec 2020 19:01:54 -0500</pubDate>
+  <lastBuildDate>Sat, 12 Dec 2020 19:01:54 -0500</lastBuildDate>
+  <generator>Emacs 27.1 Org-mode 9.4</generator>
+  <webMaster>marcussantos@MacBook-Air.local (Marcus Santos)</webMaster>
+  <image>
+    <url>https://orgmode.org/img/org-mode-unicorn-logo.png</url>
+    <title>Blog Index</title>
+    <link>http://example.com/</link>
+  </image>
+
+  <ul class="org-ul">
+    <li><p>
+      <b><a href="lisp-programming-environment.html">Getting your Lisp programming environment up and running</a></b>
+    </p>
+    <p class='pubdate'>by Marcus Santos on Dec 11, 2020.</p></li>
+    <li><p>
+      <b><a href="post-04.html">Investigating the Internet using Lisp</a></b>
+    </p>
+    <p class='pubdate'>by Marcus Santos on Oct 13, 2020.</p></li>
+    <li><p>
+      <b><a href="post-03.html">Pão de Queijo Recipe</a></b>
+    </p>
+    <p class='pubdate'>by Marcus Santos on Aug 26, 2020.</p></li>
+    <li><p>
+      <b><a href="post-02.html">Tried-and-True French Bread Recipe</a></b>
+    </p>
+    <p class='pubdate'>by Marcus Santos on Aug 25, 2020.</p></li>
+    <li><p>
+      <b><a href="post-01.html">Blogging with Emacs Org mode (I)</a></b>
+    </p>
+    <p class='pubdate'>by Marcus Santos on Aug 19, 2020.</p></li>
+  </ul>
+</channel>
+</rss>
