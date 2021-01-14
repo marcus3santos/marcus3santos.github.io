@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0"
+     xmlns:content="http://purl.org/rss/1.0/modules/content/"
+     xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+     xmlns:dc="http://purl.org/dc/elements/1.1/"
+     xmlns:atom="http://www.w3.org/2005/Atom"
+     xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+     xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+     xmlns:georss="http://www.georss.org/georss"
+     xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"
+     xmlns:media="http://search.yahoo.com/mrss/"><channel>
+  <title>Blog Index</title>
+  <atom:link href="http://example.com/index.xml" rel="self" type="application/rss+xml" />
+  <link>http://example.com/</link>
+  <description><![CDATA[]]></description>
+  <language>en</language>
+  <pubDate>Thu, 14 Jan 2021 18:11:51 -0500</pubDate>
+  <lastBuildDate>Thu, 14 Jan 2021 18:11:51 -0500</lastBuildDate>
+  <generator>Emacs 27.1 Org-mode 9.4</generator>
+  <webMaster>m3santos@Marcuss-iMac-2.local (Marcus Vinicius dos Santos)</webMaster>
+  <image>
+    <url>https://orgmode.org/img/org-mode-unicorn-logo.png</url>
+    <title>Blog Index</title>
+    <link>http://example.com/</link>
+  </image>
+
+  <ul class="org-ul">
+    <li><p>
+      <b><a href="bolo-de-milho.html">Brazilian "Bolo de milho" (corncake) recipe</a></b>
+    </p>
+    <p class='pubdate'>by Marcus Santos on Jan 14, 2021.</p></li>
+    <li><p>
+      <b><a href="unit-test-framework.html">A simple Unit Test framework in Lisp</a></b>
+    </p>
+    <p class='pubdate'>by Marcus Santos on Jan 11, 2021.</p></li>
+    <li><p>
+      <b><a href="common-lisp-jupyter.html">Getting your notebook-style environment for experimenting with Lisp programming up and running</a></b>
+    </p>
+    <p class='pubdate'>by Marcus Santos on Dec 20, 2020.</p></li>
+    <li><p>
+      <b><a href="lisp-programming-environment.html">Getting your Emacs/Slime-based Lisp programming environment up and running</a></b>
+    </p>
+    <p class='pubdate'>by Marcus Santos on Dec 11, 2020.</p></li>
+    <li><p>
+      <b><a href="post-04.html">Investigating the Internet using Lisp</a></b>
+    </p>
+    <p class='pubdate'>by Marcus Santos on Oct 13, 2020.</p></li>
+    <li><p>
+      <b><a href="post-03.html">Pão de Queijo Recipe</a></b>
+    </p>
+    <p class='pubdate'>by Marcus Santos on Aug 26, 2020.</p></li>
+    <li><p>
+      <b><a href="post-02.html">Tried-and-True French Bread Recipe</a></b>
+    </p>
+    <p class='pubdate'>by Marcus Santos on Aug 25, 2020.</p></li>
+    <li><p>
+      <b><a href="post-01.html">Blogging with Emacs Org mode (I)</a></b>
+    </p>
+    <p class='pubdate'>by Marcus Santos on Aug 19, 2020.</p></li>
+  </ul>
+</channel>
+</rss>
