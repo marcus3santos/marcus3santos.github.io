@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- May 24, 2021 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>A simple Unit Test framework in Lisp</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Marcus Santos" />
+<meta name="keywords" content="draft" />
+<link rel='icon' type='image/x-icon' href='/images/favicon.ico'/>
+<meta name='viewport' content='width=device-width, initial-scale=1'>
+<link rel='stylesheet' href='https://code.cdn.mozilla.net/fonts/fira.css'>
+<link rel='stylesheet' href='css/site.css?v=2' type='text/css'/>
+<link rel='stylesheet' href='css/custom.css' type='text/css'/>
+<link rel='stylesheet' href='css/syntax-coloring.css' type='text/css'/>
+<script type="text/javascript">
+// @license magnet:?xt=urn:btih:e95b018ef3580986a04669f1b5879592219e2a7a&dn=public-domain.txt Public Domain
+<!--/*--><![CDATA[/*><!--*/
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
+     }
+    /*]]>*///-->
+// @license-end
+</script>
+</head>
+<body>
+<div id="org-div-home-and-up">
+ <a accesskey="h" href="/"> UP </a>
+ |
+ <a accesskey="H" href="/"> HOME </a>
+</div><header id="top" class="status">
+<div class='intro'>
+  <!--
+  <img src='/images/about/profile.png' alt='Marcus Santos' class='no-border'/>
+  -->
+  <h1>
+    <span class="gray">Marcus</span>
+    <span class="black">Santos</span>
+  </h1>
+  <p>Emacs &  Lisp enthusiast</p>
+</div>
+
+<div class='nav'>
+<ul>
+<li><a href='/'>Blog</a>.</li>
+<li><a href='http://github.com/'>GitHub</a>.</li>
+<!--
+<li><a href='https://www.reddit.com/user/'>Reddit</a>.</li>
+<li><a href='/index.xml'>RSS</a>.</li>
+-->
+<li><a href='http://ryerson.ca/msantos/about/'>About</a>.</li>
+<!-- <li><a href='/about/'>About</a></li>
+-->
+</ul>
+</div>
+</header>
+<main id="content">
+<h1 class="title">A simple Unit Test framework in Lisp
+<br />
+<span class="subtitle">Published on Jan 11, 2021 by Marcus Santos.</span>
+</h1>
+<p>
+<a href="http://www.gigamonkeys.com/book/practical-building-a-unit-test-framework.html">Chapter 9 of Peter Siegel&rsquo;s book Practical Common Lisp</a> presents an interesting application for Lisp macros: a language for defining simple unit tests.
+</p>
+
+<p>
+This article provides a use case for that unit test language. For more details about macros, please read the aforementioned chapter of Peter Siegel&rsquo;s book.
+</p>
+
+<p>
+We assume you are using either emacs+slime or common-lisp-jupyter to load and run your programs. 
+</p>
+
+<section id="outline-container-orged916f1" class="outline-2">
+<h2 id="orged916f1">Creating and running test cases: steps</h2>
+<div class="outline-text-2" id="text-orged916f1">
+</div>
+<div id="outline-container-orgb89c2f1" class="outline-3">
+<h3 id="orgb89c2f1">Step 1: defining the unit test language</h3>
+<div class="outline-text-3" id="text-orgb89c2f1">
+<ul class="org-ul">
+<li><p>
+<b>Emacs+slime users</b>: <code>C-x C-f</code> to create a new buffer called <b>unit-test.lisp</b>, copy paste the program below in a buffer, <code>C-x C-s</code> to save it, then load the program by executing the command below on the REPL:
+</p>
+<div class="org-src-container">
+<pre class="src src-lisp">USER-RTL&gt; (load <span class="org-string">"unit-test.lisp"</span>)
+</pre>
+</div></li>
+<li><b>common-lisp-jupyter users</b>: copy paste the program below in a common-lisp code cell, then load it by clicking on <i>Run</i>.</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-lisp"><span class="org-comment-delimiter">;; </span><span class="org-comment">Macros</span>
+
+(<span class="org-keyword">defvar</span> <span class="org-variable-name">*test-name*</span> nil)
+
+(<span class="org-keyword">defun</span> <span class="org-function-name">report-result</span> (result form)
+  (format t <span class="org-string">"~:[FAIL~;pass~] ...~a: ~a~%"</span> result *test-name* form)
+  result)
+
+(<span class="org-keyword">defmacro</span> <span class="org-function-name">with-gensyms</span> ((<span class="org-type">&amp;rest</span> names) <span class="org-type">&amp;body</span> body)
+  `(<span class="org-keyword">let</span> ,(<span class="org-keyword">loop</span> for n in names collect `(,n (gensym)))
+     ,@body))
+
+(<span class="org-keyword">defmacro</span> <span class="org-function-name">combine-results</span> (<span class="org-type">&amp;body</span> forms)
+  (<span class="org-keyword">with-gensyms</span> (result)
+    `(<span class="org-keyword">let</span> ((,result t))
+       ,@(<span class="org-keyword">loop</span> for f in forms collect `(<span class="org-keyword">unless</span> ,f (setf ,result nil)))
+       ,result)))
+
+(<span class="org-keyword">defmacro</span> <span class="org-function-name">check</span> (<span class="org-type">&amp;body</span> forms)
+  `(combine-results
+     ,@(<span class="org-keyword">loop</span> for f in forms collect `(report-result ,f ',f))))
+
+(<span class="org-keyword">defmacro</span> <span class="org-function-name">deftest</span> (name parameters <span class="org-type">&amp;body</span> body)
+  `(<span class="org-keyword">defun</span> ,name ,parameters
+     (<span class="org-keyword">let</span> ((*test-name* (append *test-name* (list ',name))))
+       ,@body)))
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org5ba1b1b" class="outline-3">
+<h3 id="org5ba1b1b">Step 2: creating your lisp program</h3>
+<div class="outline-text-3" id="text-org5ba1b1b">
+<p>
+Suppose we would like to test the lisp program below consisting of the definition of function COUNT-VOWELS.
+</p>
+
+<ul class="org-ul">
+<li><p>
+<b>Emacs+slime users</b>: <code>C-x C-f</code> to create a new buffer called <b>my-program.lisp</b>, copy paste the program below in a buffer, =C-x C-s&ldquo; to save it, then load the program by executing the command below on the REPL:
+</p>
+<div class="org-src-container">
+<pre class="src src-lisp">USER-RTL&gt; (load <span class="org-string">"my-program.lisp"</span>)
+</pre>
+</div></li>
+<li><b>common-lisp-jupyter users</b>: copy paste the program below in a new common-lisp code cell, then load it by clicking on <i>Run</i>.</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-lisp">
+(<span class="org-keyword">defun</span> <span class="org-function-name">count-vowels</span> (str)
+  (<span class="org-keyword">do</span> ((i 0 (1+ i))
+       (acc 0)
+       (len (length str)))
+      ((= i len) acc)
+    (<span class="org-keyword">when</span> (or (equal (aref str i) #\a) (equal (aref str i) #\e)
+              (equal (aref str i) #\i) (equal (aref str i) #\o)
+              (equal (aref str i) #\u))
+      (<span class="org-builtin">:=</span> acc (1+ acc)))))
+</pre>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-org567947d" class="outline-3">
+<h3 id="org567947d">Step 3: creating the unit tests</h3>
+<div class="outline-text-3" id="text-org567947d">
+<p>
+Now it is time to define the unit tests for the functions of your program.
+</p>
+
+<ul class="org-ul">
+<li><p>
+<b>Emacs+slime users</b>: <code>C-x C-f</code> to create a new buffer called <b>test.lisp</b>, copy paste the program below in a buffer, =C-x C-s&ldquo; to save it, then load the program by executing the command below on the REPL:
+</p>
+<div class="org-src-container">
+<pre class="src src-lisp">USER-RTL&gt; (load <span class="org-string">"test.lisp"</span>)
+</pre>
+</div></li>
+<li><b>common-lisp-jupyter users</b>: copy paste the program below in a new common-lisp code cell, then load it by clicking on <i>Run</i>.</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-lisp">(deftest test-count-vowels ()              
+  (check                     
+    (= (count-vowels <span class="org-string">""</span>) 0)  <span class="org-comment">; Assertions</span>
+    (= (count-vowels <span class="org-string">"b"</span>) 0)
+    (= (count-vowels <span class="org-string">"Assdva"</span>) 1)))
+
+(<span class="org-keyword">defun</span> <span class="org-function-name">main</span> ()                              
+  (test-count-vowels))
+</pre>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-org69bfa0c" class="outline-3">
+<h3 id="org69bfa0c">Step4: running your tests</h3>
+<div class="outline-text-3" id="text-org69bfa0c">
+<p>
+To run your tests,
+</p>
+<ul class="org-ul">
+<li><b>emacs+slime users</b> type (MAIN) in the REPL</li>
+<li><b>common-lisp jupyter users</b>  type (MAIN) in a new code cell and click on <i>Run</i></li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-lisp">RTL-USER&gt; (main)
+pass ...(TEST-COUNT-VOWELS): (= (COUNT-VOWELS ) 0)
+pass ...(TEST-COUNT-VOWELS): (= (COUNT-VOWELS b) 0)
+pass ...(TEST-COUNT-VOWELS): (= (COUNT-VOWELS Assdva) 1)
+T
+</pre>
+</div>
+</div>
+</div>
+</section>
+
+<section id="outline-container-org0420868" class="outline-2">
+<h2 id="org0420868">More on assertions</h2>
+<div class="outline-text-2" id="text-org0420868">
+<ul class="org-ul">
+<li>The last step in writing a test is to validate the output against a known response (this is called an <b>assertion</b>)</li>
+<li>Best practices:
+<ul class="org-ul">
+<li>Make sure tests are repeatable.</li>
+<li>Try and assert results that relate to your input data.</li>
+</ul></li>
+</ul>
+
+<p>
+The example below shows assertions for function HAS-VOWELS which returns T its input string contains at least one vowel.
+</p>
+<div class="org-src-container">
+<pre class="src src-lisp">(deftest test-has-vowels ()
+  (check (not (has-vowels <span class="org-string">""</span>))
+         (has-vowels <span class="org-string">"b"</span>)
+         (has-vowels <span class="org-string">"bcde"</span>)))
+</pre>
+</div>
+<pre class="example">
+RTL-USER&gt; (test-has-vowels)
+pass ...(TEST-HAS-VOWELS): (NOT (HAS-VOWELS ))
+fail ...(TEST-HAS-VOWELS): (HAS-VOWELS b)
+pass ...(TEST-HAS-VOWELS): (HAS-VOWELS bcde)
+T
+</pre>
+</div>
+</section>
+</main>
+<footer id="postamble" class="status">
+<div class='footer'>
+  Copyright © 2020 <a href='mailto:m3santos@ryerson.ca'>Marcus Santos.</a><br>
+  Inspired by <a href='https://nicolas.petton.fr'>https://nicolas.petton.fr</a> <br>
+  Last updated on May 24, 2021. Generated using <a href="https://www.gnu.org/software/emacs/">Emacs</a> 27.2 (<a href="https://orgmode.org">Org</a> mode 9.4).
+</div>
+</footer>
+</body>
+</html>
