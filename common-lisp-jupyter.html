@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- Sep 21, 2021 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Getting your notebook-style environment for experimenting with Lisp programming up and running</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Marcus Santos" />
+<meta name="keywords" content="draft" />
+<link rel='icon' type='image/x-icon' href='/images/favicon.ico'/>
+<meta name='viewport' content='width=device-width, initial-scale=1'>
+<link rel='stylesheet' href='https://code.cdn.mozilla.net/fonts/fira.css'>
+<link rel='stylesheet' href='css/site.css?v=2' type='text/css'/>
+<link rel='stylesheet' href='css/custom.css' type='text/css'/>
+<link rel='stylesheet' href='css/syntax-coloring.css' type='text/css'/>
+<script type="text/javascript">
+// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
+<!--/*--><![CDATA[/*><!--*/
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
+     }
+    /*]]>*///-->
+// @license-end
+</script>
+</head>
+<body>
+<div id="org-div-home-and-up">
+ <a accesskey="h" href="/"> UP </a>
+ |
+ <a accesskey="H" href="/"> HOME </a>
+</div><header id="top" class="status">
+<div class='intro'>
+  <!--
+  <img src='/images/about/profile.png' alt='Marcus Santos' class='no-border'/>
+  -->
+  <h1>
+    <span class="gray">Marcus</span>
+    <span class="black">Santos</span>
+  </h1>
+  <p>Emacs &  Lisp enthusiast</p>
+</div>
+
+<div class='nav'>
+<ul>
+<li><a href='/'>Blog</a>.</li>
+<li><a href='http://github.com/marcus3santos/'>GitHub</a>.</li>
+<!--
+<li><a href='https://www.reddit.com/user/'>Reddit</a>.</li>
+<li><a href='/index.xml'>RSS</a>.</li>
+-->
+<li><a href='http://ryerson.ca/msantos/about/'>About</a>.</li>
+<!-- <li><a href='/about/'>About</a></li>
+-->
+</ul>
+</div>
+</header>
+<main id="content">
+<h1 class="title">Getting your notebook-style environment for experimenting with Lisp programming up and running
+<br />
+<span class="subtitle">Published on Dec 20, 2020 by Marcus Santos.</span>
+</h1>
+<p>
+This article provides the installation steps for <a href="https://github.com/yitzchak/common-lisp-jupyter">common-lisp-jupyter</a>, a notebook-style Lisp programming environmentand developed by Tarn W. Burton.
+</p>
+
+<p>
+<b>Caveat lector</b>: The cell-based style of jupyter notebooks is great for experimenting with elements of a programming language and prototyping simple code. However, as soon as your programs start growing in size you will quickly end up duplicating code and missing more powerful editing features provided by a <a href="https://marcus3santos.github.io/lisp-programming-environment.html">Emacs+Slime-based Lisp development environment</a>.
+</p>
+
+
+
+<section id="outline-container-org50538de" class="outline-2">
+<h2 id="org50538de">Installation</h2>
+<div class="outline-text-2" id="text-org50538de">
+</div>
+<div id="outline-container-org4116b92" class="outline-3">
+<h3 id="org4116b92">Lisp compiler</h3>
+<div class="outline-text-3" id="text-org4116b92">
+
+<div id="orgb5eb447" class="figure">
+<p><img src="https://www.lisperati.com/lisplogo_fancy_256.png" alt="lisplogo_fancy_256.png" />
+</p>
+</div>
+
+
+<p>
+On both Linux and OS X, we’ll use Steel Bank Common Lisp (SBCL) as the Common Lisp implementation.
+</p>
+</div>
+
+<div id="outline-container-org3b3141e" class="outline-4">
+<h4 id="org3b3141e">Ubuntu/Debian</h4>
+<div class="outline-text-4" id="text-org3b3141e">
+<p>
+To install SBCL on either, just run:
+</p>
+<pre class="example" id="orgf0de911">
+$ sudo apt-get install sbcl
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgc13a9c1" class="outline-4">
+<h4 id="orgc13a9c1">Arch Linux</h4>
+<div class="outline-text-4" id="text-orgc13a9c1">
+<p>
+Since SBCL is available from the official repositories, you can install it with:
+</p>
+<pre class="example" id="org8c18356">
+$ sudo pacman -S sbcl
+</pre>
+</div>
+</div>
+<div id="outline-container-org731dfb9" class="outline-4">
+<h4 id="org731dfb9">OS X</h4>
+<div class="outline-text-4" id="text-org731dfb9">
+<p>
+To install SBCL on OS X, just do:
+</p>
+<pre class="example" id="org9d2feb0">
+$ brew install sbcl
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgcb16128" class="outline-4">
+<h4 id="orgcb16128">Windows</h4>
+<div class="outline-text-4" id="text-orgcb16128">
+<p>
+On Windows, install the Windows binary available at the <a href="http://www.sbcl.org/platform-table.html">SBCL download page</a>.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org89c105b" class="outline-3">
+<h3 id="org89c105b">Jupyter</h3>
+<div class="outline-text-3" id="text-org89c105b">
+<ol class="org-ol">
+<li>Install Python version 3.3 or greater. Python is a requirement for installing Jupyterlab.</li>
+<li><p>
+Install Jupyterlab
+</p>
+<pre class="example" id="orgd458c21">
+pip install jupyterlab
+</pre></li>
+<li>Install Quicklisp by executing on the shell the commands shown in the gray box of <a href="https://www.quicklisp.org/beta/#installation">this example of a quicklisp installation session</a>.</li>
+<li><p>
+Finally, Quicklisp install <i>common-lisp-jupyter</i>. Type the command below on the shell terminal
+</p>
+<pre class="example" id="org4a41412">
+$ sbcl
+* (ql:update-dist "quicklisp")
+* (ql:quickload :common-lisp-jupyter)
+* (cl-jupyter:install)
+* (quit)
+</pre></li>
+</ol>
+</div>
+</div>
+</section>
+
+<section id="outline-container-org42471ae" class="outline-2">
+<h2 id="org42471ae">Running common-lisp-jupyter</h2>
+<div class="outline-text-2" id="text-org42471ae">
+<ol class="org-ol">
+<li><p>
+Type the following command at the shell terminal
+</p>
+<pre class="example" id="orgaa9f5d8">
+$ jupyter notebook
+</pre>
+<p>
+This will open a browser window listing your file folders.
+</p></li>
+<li>On the top right corner of your browser window, click on the dropdown menu labeled <code>New</code>, then select <code>Common Lisp</code>.</li>
+</ol>
+
+<p>
+This will start the common-lisp REPL. You can now type Lisp expressions to be executed.
+</p>
+
+<p>
+Type the expressions below then click on <code>Run</code>
+</p>
+<pre class="example" id="org38b3eb9">
+(defvar x 8)
+(/ x 3)
+(+ (* x x) 9)
+</pre>
+
+
+
+<div class='comments'><div id='disqus_thread'></div><script type='text/javascript'>var disqus_shortname = 'johndoe-example-com'; (function() {var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;	dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq); })(); </script>  <noscript>Please enable JavaScript to view the <a href='http://disqus.com/?ref_noscript'>comments powered by Disqus.</a></noscript></div>
+</div>
+</section>
+</main>
+<footer id="postamble" class="status">
+<div class='footer'>
+  Copyright © 2020 <a href='mailto:m3santos@ryerson.ca'>Marcus Santos.</a><br>
+  Inspired by <a href='https://nicolas.petton.fr'>https://nicolas.petton.fr</a> <br>
+  Last updated on Sep 21, 2021. Generated using <a href="https://www.gnu.org/software/emacs/">Emacs</a> 27.2 (<a href="https://orgmode.org">Org</a> mode 9.4.6).
+</div>
+</footer>
+</body>
+</html>
