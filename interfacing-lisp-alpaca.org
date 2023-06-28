@@ -262,8 +262,8 @@ As you saw in the experiment above, if you are proficient in programming and usi
  [[file:chat.png]]
 7. At this point, we are going to undertake a delicate operation, which involves wrapping the output of Alpaca with a string-to-string transformation function in Bigloo. Let's proceed with editing the chat.cpp function.
 8. Add the prototype for the Scheme function we wrote to the chat.cpp program
-   
-   file:code1.png
+
+   [[file:code1.png]]
 
    To facilitate the Ctrl-C/Ctrl-V, we provide the source code below
    #+begin_src c++
