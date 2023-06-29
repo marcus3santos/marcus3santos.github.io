@@ -36,7 +36,7 @@ and build powerful applications.
 
 * What you need
    
-1. On Linux, you should begin by installing python3 and sbcl. To
+1. On Linux, you should begin by installing python and sbcl. To
    compile the latest version of sbcl, you need to have an older sbcl
    version since the compiler is written in Lisp. You can find older
    sbcl versions and the source code on the following page:
