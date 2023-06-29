@@ -1,0 +1,155 @@
+#+Title: Calling Lisp from Python
+
+* Introduction
+
+Welcome to the tutorial on calling Common Lisp from Python! In this
+guide, we will explore the process of integrating Common Lisp,
+specifically SBCL (Steel Bank Common Lisp), with Python on Linux. By
+combining the power of these two languages, you can leverage the
+strengths of both environments for your projects.
+
+* Why
+
+There are several reasons why one might want to call Common Lisp
+functions from a Python program:
+
+1. *Leveraging existing Common Lisp libraries*: Common Lisp has a rich
+   ecosystem of libraries and frameworks that may offer functionality
+   not readily available in Python. By calling Common Lisp functions,
+   you can tap into these libraries and utilize their capabilities
+   within your Python application.
+2. *Performance and optimization*: Common Lisp is known for its efficiency
+   and powerful optimization capabilities. If you have
+   performance-critical parts of your code that could benefit from
+   Common Lisp's speed and optimization features, calling Common Lisp
+   functions from Python can help improve overall execution time.
+3. *Legacy code integration*: In situations where you have legacy code
+   or systems written in Common Lisp, calling Common Lisp functions
+   from Python can provide a way to interface with and extend those
+   existing systems while leveraging Python's broader ecosystem and
+   ease of development.
+
+Overall, calling Common Lisp functions from Python offers flexibility,
+access to specialized libraries, and the ability to combine the
+strengths of both languages, allowing you to tackle complex problems
+and build powerful applications.
+
+* What you need
+   
+1. On Linux, you should begin by installing python and sbcl. To
+   compile the latest version of sbcl, you need to have an older sbcl
+   version since the compiler is written in Lisp. You can find older
+   sbcl versions and the source code on the following page:
+
+   http://www.sbcl.org
+
+   Assuming you have an older working sbcl, here's how to install the latest version:
+
+   #+begin_src shell
+   ~/source$ tar xfvj sbcl-2.3.6-source.tar.bz2
+   ~/source$ cd sbcl-2.3.6
+   ~/source/sbcl-2.3.6$ sh make.sh
+   ~/source/sbcl-2.3.6$ sudo sh install.sh
+   #+end_src
+
+2. One very important thing: When Lisp encounters an error, it enters
+   debug mode. You don't want that when someone is using your
+   libraries from within Python. Therefore, add the following code to
+   your *.sbclrc* file, which should reside in your home directory:
+
+ #+begin_src lisp
+   ;;; File .sbclrc should reside in the home directory
+   
+   (defun debug-ignore (c h)
+     (declare (ignore h))
+     (print c)
+     (abort))
+   
+   (setf debugger-hook #'debug-ignore)
+ #+end_src
+
+ The above program disables the debug.
+
+3. After installing the latest sbcl version and disabling the debug,
+    you should install python. Don't forget to install numpy if you
+    haven't already.
+
+    #+begin_src shell
+    ~$ sudo pip3 install numpy
+    #+end_src
+
+4. Clone the cl4py repository by executing the following command:
+
+ #+begin_src shell
+ ~$ git clone https://github.com/marcoheisig/cl4py
+ Cloning into 'cl4py'...
+ remote: Enumerating objects: 575, done.
+ remote: Counting objects: 100% (148/148), done.
+ remote: Compressing objects: 100% (80/80), done.
+ remote: Total 575 (delta 92), reused 119 (delta 66), pack-reused 427
+ Receiving objects: 100% (575/575), 133.54 KiB | 1.61 MiB/s, done.
+ Resolving deltas: 100% (361/361), done.
+ #+end_src
+
+* Experiments
+  
+1. Navigate to the cl4py directory:
+
+ #+begin_src shell
+ ~$ cd cl4py
+ ~/cl4py$ _
+ #+end_src
+
+6. Write and save the following program in that directory:
+
+ #+begin_src lisp
+ (defun fib(n)
+   (declare (optimize (speed 3) (safety 0)))
+   (declare (fixnum n))
+   (if (< n 2) 1
+     (+ (fib (- n 1))
+        (fib (- n 2))) ))
+ #+end_src
+3. Now let's run a series of experiments:
+ #+begin_src python
+   /tmp/cl4py> python3.8
+   Python 3.8.10 (default, May 26 2023, 14:05:08) 
+   [GCC 9.4.0] on linux
+   Type "help", "copyright", "credits" or "license" for more information.
+   >>> import cl4py
+   >>> lisp= cl4py.Lisp()
+   >>> lisp.eval(42)
+   42
+   
+   >>> add= lisp.function('+')
+   >>> add(1, 2, 3, 4, 5)
+   15
+ #+end_src
+ cl4py also offers convenient methods for loading Lisp programs and performing function and package lookups:
+ #+begin_src python
+   >>> ld= lisp.function('load')
+   >>> ld('fib.lisp')
+   True
+   >>> fb= lisp.function('fib')
+   >>> fb(5)
+   8
+   >>> fb(40)
+   165580141
+   
+   >>> cl= lisp.find_package('CL')
+   >>> cl.mapcar(lisp.function('-'), (1, 2, 3, 4, 5))
+   List(-1, -2, -3, -4, -5)
+   
+   >>> cl.cons(5, None)
+   List(5)
+   
+   >>> cl.remove(5, [1, -5, 2, 7, 5, 9], key=cl.abs)
+   [1, 2, 7, 9]
+ #+end_src
+
+For more examples, you can explore a variety of additional code
+samples available at the cl4py repository on GitHub. Simply visit the
+following link: https://github.com/marcoheisig/cl4py. This repository
+provides a comprehensive resource to further enhance your
+understanding of cl4py's capabilities and assist you in effectively
+utilizing the integration of Common Lisp within your Python projects.
