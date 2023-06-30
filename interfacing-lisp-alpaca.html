@@ -74,23 +74,23 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgda376f6">Introduction</a></li>
-<li><a href="#org3684120">Why</a></li>
-<li><a href="#org157255e">What</a></li>
-<li><a href="#org3ecd6ee">How</a>
+<li><a href="#orgcda50e9">Introduction</a></li>
+<li><a href="#org0d6c20d">Why</a></li>
+<li><a href="#orga2010d7">What</a></li>
+<li><a href="#org0f13edb">How</a>
 <ul>
-<li><a href="#orgaccc154">Installing Alpaca</a></li>
-<li><a href="#orga8f547b">An Experiment: calling a Bigloo Scheme function from C</a></li>
-<li><a href="#org3c95203">Integrating a Bigloo Scheme function into Alpaca</a></li>
+<li><a href="#org3f22dba">Installing Alpaca</a></li>
+<li><a href="#org39a342e">An Experiment: calling a Bigloo Scheme function from C</a></li>
+<li><a href="#org0f23e1b">Integrating a Bigloo Scheme function into Alpaca</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </nav>
 
-<section id="outline-container-orgda376f6" class="outline-2">
-<h2 id="orgda376f6">Introduction</h2>
-<div class="outline-text-2" id="text-orgda376f6">
+<section id="outline-container-orgcda50e9" class="outline-2">
+<h2 id="orgcda50e9">Introduction</h2>
+<div class="outline-text-2" id="text-orgcda50e9">
 <p>
 Welcome to our tutorial on installing, running, and exploring the
 capabilities of a local Large Language Model (LLM). In this tutorial,
@@ -116,9 +116,9 @@ Are you ready to dive into the world of local LLMs? Let&rsquo;s get started on t
 </div>
 </section>
 
-<section id="outline-container-org3684120" class="outline-2">
-<h2 id="org3684120">Why</h2>
-<div class="outline-text-2" id="text-org3684120">
+<section id="outline-container-org0d6c20d" class="outline-2">
+<h2 id="org0d6c20d">Why</h2>
+<div class="outline-text-2" id="text-org0d6c20d">
 <p>
 The question &ldquo;Why should one bother running a local LLM?&rdquo; is worth pondering. When posed with this question, ChatGPT provided the response below. We have emphasized item 1 as it closely aligns with the central focus of our tutorial.
 </p>
@@ -150,9 +150,9 @@ efficiency.
 </div>
 </section>
 
-<section id="outline-container-org157255e" class="outline-2">
-<h2 id="org157255e">What</h2>
-<div class="outline-text-2" id="text-org157255e">
+<section id="outline-container-orga2010d7" class="outline-2">
+<h2 id="orga2010d7">What</h2>
+<div class="outline-text-2" id="text-orga2010d7">
 <p>
 The question of &ldquo;What materials do I need to refine the answers a LLM
 and run it on my personal computer?&rdquo; is another important aspect to
@@ -175,9 +175,9 @@ In this tutorial, we will utilize the following materials:
 </div>
 </section>
 
-<section id="outline-container-org3ecd6ee" class="outline-2">
-<h2 id="org3ecd6ee">How</h2>
-<div class="outline-text-2" id="text-org3ecd6ee">
+<section id="outline-container-org0f13edb" class="outline-2">
+<h2 id="org0f13edb">How</h2>
+<div class="outline-text-2" id="text-org0f13edb">
 <p>
 Having understood the value of running a local LLM and the necessary
 materials for the task, let&rsquo;s delve into the process of installing and
@@ -187,9 +187,9 @@ responses provided by the model.
 </p>
 </div>
 
-<div id="outline-container-orgaccc154" class="outline-3">
-<h3 id="orgaccc154">Installing Alpaca</h3>
-<div class="outline-text-3" id="text-orgaccc154">
+<div id="outline-container-org3f22dba" class="outline-3">
+<h3 id="org3f22dba">Installing Alpaca</h3>
+<div class="outline-text-3" id="text-org3f22dba">
 <ol class="org-ol">
 <li><p>
 Assuming that all of you are using Linux , the process is
@@ -226,7 +226,7 @@ icon, as illustrated in the figure below.
 </p>
 
 
-<figure id="orgeac37bd">
+<figure id="orgee5f1db">
 <img src="alpaca-db.png" alt="alpaca-db.png">
 
 </figure></li>
@@ -235,7 +235,7 @@ icon, as illustrated in the figure below.
 On my machine, the file is located in the ~/Downloads/ directory. Let&rsquo;s move it to the directory where the chat application is located. Once we have completed the transfer, we can proceed to test the program.
 </p>
 
-<pre class="example" id="org6e9958d">
+<pre class="example" id="orgb506e1f">
 ~/LLM/alpaca.cpp$ mv ~/Downloads/ggml-alpaca-7b-q4.bin .
 ~/LLM/alpaca.cpp$ ./chat -m ./ggml-alpaca-7b-q4.bin
 == Running in chat mode. ==
@@ -259,9 +259,9 @@ expressed in melanoma, helping to block their growth and spread.
 </div>
 </div>
 
-<div id="outline-container-orga8f547b" class="outline-3">
-<h3 id="orga8f547b">An Experiment: calling a Bigloo Scheme function from C</h3>
-<div class="outline-text-3" id="text-orga8f547b">
+<div id="outline-container-org39a342e" class="outline-3">
+<h3 id="org39a342e">An Experiment: calling a Bigloo Scheme function from C</h3>
+<div class="outline-text-3" id="text-org39a342e">
 <p>
 Our ultimate goal is to write functions in Scheme, export them to C++ and gcc, and utilize string transformations to refine Alpaca&rsquo;s responses to align with our specific requirements. 
 </p>
@@ -366,9 +366,9 @@ ERA
 </div>
 </div>
 
-<div id="outline-container-org3c95203" class="outline-3">
-<h3 id="org3c95203">Integrating a Bigloo Scheme function into Alpaca</h3>
-<div class="outline-text-3" id="text-org3c95203">
+<div id="outline-container-org0f23e1b" class="outline-3">
+<h3 id="org0f23e1b">Integrating a Bigloo Scheme function into Alpaca</h3>
+<div class="outline-text-3" id="text-org0f23e1b">
 <p>
 As you saw in the experiment above, if you are proficient in programming and using GCC&rsquo;s compilers to translate code into executable programs, then you have the ability to build hybrid programs. A competent programmer is unhesitant about combining languages, provided that both languages exhibit speed and efficiency. While a skilled programmer could write an LLM using Bigloo or Common Lisp, it would require a minimum of one year. However, thanks to the efforts of Meta and Stanford, they have already undertaken this task for us by providing us with their C++ code. Hence, we can readily utilize their code for our purposes. Let’s start by cloning Alpaca’s source code.
 </p>
@@ -446,7 +446,7 @@ Let&rsquo;s perform a test to verify if changing the default from c11 to gcc has
 </pre>
 </div>
 
-<figure id="org7cf5740">
+<figure id="orgc996f14">
 <img src="chat.png" alt="chat.png">
 
 </figure></li>
@@ -456,7 +456,7 @@ Add the prototype for the Scheme function we wrote to the chat.cpp program
 </p>
 
 
-<figure id="org30d25a0">
+<figure id="orgfd1f27e">
 <img src="code1.png" alt="code1.png">
 
 </figure>
@@ -473,7 +473,7 @@ Perform a search for &rsquo;display text&rsquo; to locate the following block of
 </p>
 
 
-<figure id="orgbb8a7a2">
+<figure id="org186947a">
 <img src="code2.png" alt="code2.png">
 
 </figure></li>
@@ -482,7 +482,7 @@ Apply function scheme<sub>upc</sub> to the string generated by the LLM. The bloc
 </p>
 
 
-<figure id="orgb43caca">
+<figure id="orged66831">
 <img src="code3.png" alt="code3.png">
 
 </figure></li>
@@ -523,7 +523,7 @@ Finally, let’s test it.
 </div>
 
 
-<figure id="org4b01311">
+<figure id="org166235d">
 <img src="chat1.png" alt="chat1.png">
 
 </figure>
