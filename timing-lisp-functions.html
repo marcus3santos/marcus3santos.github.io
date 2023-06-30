@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- Feb 19, 2021 -->
+<!-- Jun 30, 2023 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Timing Lisp functions</title>
@@ -16,7 +16,7 @@
 <link rel='stylesheet' href='css/custom.css' type='text/css'/>
 <link rel='stylesheet' href='css/syntax-coloring.css' type='text/css'/>
 <script type="text/javascript">
-// @license magnet:?xt=urn:btih:e95b018ef3580986a04669f1b5879592219e2a7a&dn=public-domain.txt Public Domain
+// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
 <!--/*--><![CDATA[/*><!--*/
      function CodeHighlightOn(elem, id)
      {
@@ -58,7 +58,7 @@
 <div class='nav'>
 <ul>
 <li><a href='/'>Blog</a>.</li>
-<li><a href='http://github.com/'>GitHub</a>.</li>
+<li><a href='http://github.com/marcus3santos/'>GitHub</a>.</li>
 <!--
 <li><a href='https://www.reddit.com/user/'>Reddit</a>.</li>
 <li><a href='/index.xml'>RSS</a>.</li>
@@ -75,9 +75,9 @@
 <span class="subtitle">Published on Jan 25, 2021 by Marcus Santos.</span>
 </h1>
 
-<section id="outline-container-orgbb010bf" class="outline-2">
-<h2 id="orgbb010bf">Preamble</h2>
-<div class="outline-text-2" id="text-orgbb010bf">
+<section id="outline-container-orgbe32dfc" class="outline-2">
+<h2 id="orgbe32dfc">Preamble</h2>
+<div class="outline-text-2" id="text-orgbe32dfc">
 <p>
 This quick tutorial assumes you already know the basics of programming in Lisp using Emacs/Slime, and that you have installed the <a href="https://github.com/vseloved/rutils">RUTILS</a> lisp package.
 </p>
@@ -88,9 +88,9 @@ As we will be plotting algorithm performance data, I also assume you are familia
 </div>
 </section>
 
-<section id="outline-container-orgaaef783" class="outline-2">
-<h2 id="orgaaef783">Common Lisp&rsquo;s timing untilities</h2>
-<div class="outline-text-2" id="text-orgaaef783">
+<section id="outline-container-orgc09100c" class="outline-2">
+<h2 id="orgc09100c">Common Lisp&rsquo;s timing untilities</h2>
+<div class="outline-text-2" id="text-orgc09100c">
 <p>
 Common Lisp provides a standard utility for performance measurement, TIME:
 </p>
@@ -170,9 +170,9 @@ An example of using the TIMEF macro to obtain the runtime for a call to function
 </div>
 </section>
 
-<section id="outline-container-orgda3514f" class="outline-2">
-<h2 id="orgda3514f">Timing a function considering different parameter values</h2>
-<div class="outline-text-2" id="text-orgda3514f">
+<section id="outline-container-orge837a32" class="outline-2">
+<h2 id="orge837a32">Timing a function considering different parameter values</h2>
+<div class="outline-text-2" id="text-orge837a32">
 <p>
 The steps below show how to use TIMEF to measure the runtime of function FIND for different array sizes. 
 </p>
@@ -180,7 +180,7 @@ The steps below show how to use TIMEF to measure the runtime of function FIND fo
 <p>
 <b>Step 1</b>: Using the terminal shell, type the following commands to create a dedicated folder for your experiment, and open emacs to edit a new file called <b>timing.lisp</b>
 </p>
-<pre class="example" id="orgb0fe341">
+<pre class="example" id="org42f816b">
 $ cd
 $ mkdir timing
 $ cd timing
@@ -220,7 +220,7 @@ $ emacs -nw timing-experiment.lisp
 <p>
 <b>Step 5</b>: Type the following commands on the shell:
 </p>
-<pre class="example" id="org38c1ba4">
+<pre class="example" id="org19aaaa5">
 $ gnuplot   # This command will open the gnuplot shell
 gnuplot&gt; set xlabel "Array size"
 gnuplot&gt; set ylabel "Runtime"
@@ -239,7 +239,7 @@ Gnuplot will then show you the following graph in a new window:
 <div class='footer'>
   Copyright © 2020 <a href='mailto:m3santos@ryerson.ca'>Marcus Santos.</a><br>
   Inspired by <a href='https://nicolas.petton.fr'>https://nicolas.petton.fr</a> <br>
-  Last updated on Feb 19, 2021. Generated using <a href="https://www.gnu.org/software/emacs/">Emacs</a> 27.1 (<a href="https://orgmode.org">Org</a> mode 9.4).
+  Last updated on Jun 30, 2023. Generated using <a href="https://www.gnu.org/software/emacs/">Emacs</a> 28.1 (<a href="https://orgmode.org">Org</a> mode 9.4.6).
 </div>
 </footer>
 </body>

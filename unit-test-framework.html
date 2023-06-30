@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- May 24, 2021 -->
+<!-- Jun 30, 2023 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>A simple Unit Test framework in Lisp</title>
@@ -17,7 +17,7 @@
 <link rel='stylesheet' href='css/custom.css' type='text/css'/>
 <link rel='stylesheet' href='css/syntax-coloring.css' type='text/css'/>
 <script type="text/javascript">
-// @license magnet:?xt=urn:btih:e95b018ef3580986a04669f1b5879592219e2a7a&dn=public-domain.txt Public Domain
+// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
 <!--/*--><![CDATA[/*><!--*/
      function CodeHighlightOn(elem, id)
      {
@@ -59,7 +59,7 @@
 <div class='nav'>
 <ul>
 <li><a href='/'>Blog</a>.</li>
-<li><a href='http://github.com/'>GitHub</a>.</li>
+<li><a href='http://github.com/marcus3santos/'>GitHub</a>.</li>
 <!--
 <li><a href='https://www.reddit.com/user/'>Reddit</a>.</li>
 <li><a href='/index.xml'>RSS</a>.</li>
@@ -87,13 +87,13 @@ This article provides a use case for that unit test language. For more details a
 We assume you are using either emacs+slime or common-lisp-jupyter to load and run your programs. 
 </p>
 
-<section id="outline-container-orged916f1" class="outline-2">
-<h2 id="orged916f1">Creating and running test cases: steps</h2>
-<div class="outline-text-2" id="text-orged916f1">
+<section id="outline-container-orgeb32c3e" class="outline-2">
+<h2 id="orgeb32c3e">Creating and running test cases: steps</h2>
+<div class="outline-text-2" id="text-orgeb32c3e">
 </div>
-<div id="outline-container-orgb89c2f1" class="outline-3">
-<h3 id="orgb89c2f1">Step 1: defining the unit test language</h3>
-<div class="outline-text-3" id="text-orgb89c2f1">
+<div id="outline-container-org232e7bb" class="outline-3">
+<h3 id="org232e7bb">Step 1: defining the unit test language</h3>
+<div class="outline-text-3" id="text-org232e7bb">
 <ul class="org-ul">
 <li><p>
 <b>Emacs+slime users</b>: <code>C-x C-f</code> to create a new buffer called <b>unit-test.lisp</b>, copy paste the program below in a buffer, <code>C-x C-s</code> to save it, then load the program by executing the command below on the REPL:
@@ -137,9 +137,9 @@ We assume you are using either emacs+slime or common-lisp-jupyter to load and ru
 </div>
 </div>
 
-<div id="outline-container-org5ba1b1b" class="outline-3">
-<h3 id="org5ba1b1b">Step 2: creating your lisp program</h3>
-<div class="outline-text-3" id="text-org5ba1b1b">
+<div id="outline-container-orgd2da68d" class="outline-3">
+<h3 id="orgd2da68d">Step 2: creating your lisp program</h3>
+<div class="outline-text-3" id="text-orgd2da68d">
 <p>
 Suppose we would like to test the lisp program below consisting of the definition of function COUNT-VOWELS.
 </p>
@@ -172,9 +172,9 @@ Suppose we would like to test the lisp program below consisting of the definitio
 </div>
 
 
-<div id="outline-container-org567947d" class="outline-3">
-<h3 id="org567947d">Step 3: creating the unit tests</h3>
-<div class="outline-text-3" id="text-org567947d">
+<div id="outline-container-org55e9252" class="outline-3">
+<h3 id="org55e9252">Step 3: creating the unit tests</h3>
+<div class="outline-text-3" id="text-org55e9252">
 <p>
 Now it is time to define the unit tests for the functions of your program.
 </p>
@@ -205,9 +205,9 @@ Now it is time to define the unit tests for the functions of your program.
 </div>
 
 
-<div id="outline-container-org69bfa0c" class="outline-3">
-<h3 id="org69bfa0c">Step4: running your tests</h3>
-<div class="outline-text-3" id="text-org69bfa0c">
+<div id="outline-container-org77a6b91" class="outline-3">
+<h3 id="org77a6b91">Step4: running your tests</h3>
+<div class="outline-text-3" id="text-org77a6b91">
 <p>
 To run your tests,
 </p>
@@ -227,9 +227,9 @@ T
 </div>
 </section>
 
-<section id="outline-container-org0420868" class="outline-2">
-<h2 id="org0420868">More on assertions</h2>
-<div class="outline-text-2" id="text-org0420868">
+<section id="outline-container-org660459f" class="outline-2">
+<h2 id="org660459f">More on assertions</h2>
+<div class="outline-text-2" id="text-org660459f">
 <ul class="org-ul">
 <li>The last step in writing a test is to validate the output against a known response (this is called an <b>assertion</b>)</li>
 <li>Best practices:
@@ -263,7 +263,7 @@ T
 <div class='footer'>
   Copyright © 2020 <a href='mailto:m3santos@ryerson.ca'>Marcus Santos.</a><br>
   Inspired by <a href='https://nicolas.petton.fr'>https://nicolas.petton.fr</a> <br>
-  Last updated on May 24, 2021. Generated using <a href="https://www.gnu.org/software/emacs/">Emacs</a> 27.2 (<a href="https://orgmode.org">Org</a> mode 9.4).
+  Last updated on Jun 30, 2023. Generated using <a href="https://www.gnu.org/software/emacs/">Emacs</a> 28.1 (<a href="https://orgmode.org">Org</a> mode 9.4.6).
 </div>
 </footer>
 </body>

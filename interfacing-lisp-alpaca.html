@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Jun 30, 2023 -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Exploring and Harnessing the Power of a Local Large Language Model (LLM)</title>
+<meta name="generator" content="Org mode">
+<meta name="author" content="Marcus Santos">
+<link rel='icon' type='image/x-icon' href='/images/favicon.ico'/>
+<meta name='viewport' content='width=device-width, initial-scale=1'>
+<link rel='stylesheet' href='https://code.cdn.mozilla.net/fonts/fira.css'>
+<link rel='stylesheet' href='css/site.css?v=2' type='text/css'/>
+<link rel='stylesheet' href='css/custom.css' type='text/css'/>
+<link rel='stylesheet' href='css/syntax-coloring.css' type='text/css'/>
+<script type="text/javascript">
+// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
+<!--/*--><![CDATA[/*><!--*/
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
+     }
+    /*]]>*///-->
+// @license-end
+</script>
+</head>
+<body>
+<div id="org-div-home-and-up">
+ <a accesskey="h" href="/"> UP </a>
+ |
+ <a accesskey="H" href="/"> HOME </a>
+</div><header id="top" class="status">
+<div class='intro'>
+  <!--
+  <img src='/images/about/profile.png' alt='Marcus Santos' class='no-border'/>
+  -->
+  <h1>
+    <span class="gray">Marcus</span>
+    <span class="black">Santos</span>
+  </h1>
+  <p>Emacs &  Lisp enthusiast</p>
+</div>
+
+<div class='nav'>
+<ul>
+<li><a href='/'>Blog</a>.</li>
+<li><a href='http://github.com/marcus3santos/'>GitHub</a>.</li>
+<!--
+<li><a href='https://www.reddit.com/user/'>Reddit</a>.</li>
+<li><a href='/index.xml'>RSS</a>.</li>
+-->
+<li><a href='http://ryerson.ca/msantos/about/'>About</a>.</li>
+<!-- <li><a href='/about/'>About</a></li>
+-->
+</ul>
+</div>
+</header>
+<main id="content">
+<header>
+<h1 class="title">Exploring and Harnessing the Power of a Local Large Language Model (LLM)</h1>
+</header>
+<section id="outline-container-org337e0bd" class="outline-2">
+<h2 id="org337e0bd">Introduction</h2>
+<div class="outline-text-2" id="text-org337e0bd">
+<p>
+Welcome to our tutorial on installing, running, and exploring the
+capabilities of a local Large Language Model (LLM). In this tutorial,
+we will guide you through the process of setting up a state-of-the-art
+LLM on your personal computer. You will learn how to programmatically
+interact with the model, accessing both user questions and
+model-generated answers.
+</p>
+
+<p>
+By the end of this tutorial, you will not only be able to send
+questions to the LLM and retrieve answers but also possess the skills
+to enhance and refine user queries programmatically. This will allow
+you to improve the conciseness, focus, and analytical potential of the
+LLM responses. Furthermore, you will be able to use that skill to
+extract numerical data and keywords from the model&rsquo;s answers, enabling
+further analysis.
+</p>
+
+<p>
+Are you ready to dive into the world of local LLMs? Let&rsquo;s get started on this exciting journey!
+</p>
+</div>
+</section>
+
+<section id="outline-container-orgd2a8596" class="outline-2">
+<h2 id="orgd2a8596">Why</h2>
+<div class="outline-text-2" id="text-orgd2a8596">
+<p>
+The question &ldquo;Why should one bother running a local LLM?&rdquo; is worth pondering. When posed with this question, ChatGPT provided the response below. We have emphasized item 1 as it closely aligns with the central focus of our tutorial.
+</p>
+
+<blockquote>
+<p>
+“Running a local Language Model (LLM) instead of using ChatGPT, like the one I am based on, may have certain advantages and use cases:
+</p>
+<ol class="org-ol">
+<li><b>Customization and Adaptability: With a local LLM, you have the flexibility to customize and adapt the model according to your specific needs. You can fine-tune the model using your own data or modify it to suit particular requirements, ensuring it aligns closely with your use case.</b></li>
+<li>Privacy and Security: By running a local LLM, you have more control over your data and can ensure its privacy and security. Since all computations are performed locally, sensitive information or proprietary data can remain within your infrastructure.</li>
+<li>Offline Access: A local LLM allows you to have continuous access to language processing capabilities even without an internet connection. This can be valuable in scenarios where internet access is limited, unreliable, or unavailable.</li>
+<li>Latency and Response Time: Running a local LLM can potentially offer faster response times as there is no dependency on network connectivity or external servers. This can be beneficial in time-critical applications or real-time interactions where low latency is crucial.</li>
+<li>Compliance and Regulatory Requirements: Some industries or organizations may have strict compliance or regulatory requirements that govern data storage, processing, or access. Running a local LLM allows for greater control over data management, facilitating adherence to such requirements.”/</li>
+</ol>
+</blockquote>
+<p>
+That being said, it&rsquo;s crucial to acknowledge that running a local LLM
+does present challenges, notably the requirement for substantial
+computational resources. Even when implemented in Common Lisp or using
+the GNU Compiler Collection (GCC), Large Language Models tend to
+exhibit slow performance. Ideally, hardware implementation should be
+considered, or alternatively, utilizing GPUs or other massively
+parallel processing systems. Nevertheless, in this tutorial, we will
+explore the utilization of GCC and the Bigloo Scheme language as our
+chosen tools. Both are renowned for their flexibility, robustness, and
+efficiency.
+</p>
+</div>
+</section>
+
+<section id="outline-container-orgd3b4050" class="outline-2">
+<h2 id="orgd3b4050">What</h2>
+<div class="outline-text-2" id="text-orgd3b4050">
+<p>
+The question of &ldquo;What materials do I need to refine the answers a LLM
+and run it on my personal computer?&rdquo; is another important aspect to
+address before we proceed with the installation and execution of a
+local LLM.
+</p>
+
+<p>
+In this tutorial, we will utilize the following materials:
+</p>
+
+<ul class="org-ul">
+<li>Alpaca: It is an instruction-following language model developed at Stanford University which is fine-tuned from Meta’s LLaMA 7B model. We will show you how to install Alpaca and use it.</li>
+<li>Linux or Mac: we assume you are using one of these operating systems.</li>
+<li>GCC (Gnu Compiler Collection): We will GCC to compile Bigloo and its libraries.</li>
+<li>Bigloo Scheme: Bigloo is a Scheme implementation that offers excellent performance. We will be using it as our programming language of choice for this tutorial.</li>
+<li>Pretrained LLM model: You will need a pretrained LLM model, which we will discuss how to obtain later in the tutorial.</li>
+<li>Optional: GPU or cloud resources: While not strictly necessary, having a GPU or access to cloud resources can significantly speed up the execution of LLMs.</li>
+</ul>
+</div>
+</section>
+
+<section id="outline-container-orgbc3ace9" class="outline-2">
+<h2 id="orgbc3ace9">How</h2>
+<div class="outline-text-2" id="text-orgbc3ace9">
+<p>
+Having understood the value of running a local LLM and the necessary
+materials for the task, let&rsquo;s delve into the process of installing and
+running a local LLM. Additionally, we will explore how to
+programmatically intervene in user queries and the corresponding
+responses provided by the model.
+</p>
+</div>
+
+<div id="outline-container-org894d16c" class="outline-3">
+<h3 id="org894d16c">Installing Alpaca</h3>
+<div class="outline-text-3" id="text-org894d16c">
+<ol class="org-ol">
+<li><p>
+Assuming that all of you are using Linux , the process is
+straightforward. You just need to clone the system. To facilitate
+this, I have already created an LLM directory at the root. Now,
+let&rsquo;s proceed with the following step-by-step commands:
+</p>
+<div class="org-src-container">
+<pre class="src src-shell">~$ cd LLM
+~/LLM$ git clone https://github.com/antimatter15/alpaca.cpp
+Cloning into <span class="org-string">'alpaca.cpp'</span>...
+remote: Enumerating objects: 515, done.
+remote: Counting objects: 100% (53/53), done.
+remote: Compressing objects: 100% (6/6), done.
+remote: Total 515 (delta 47), reused 47 (delta 47), pack-reused 462
+Receiving objects: 100% (515/515), 1.32 MiB | 3.84 MiB/s, done.
+Resolving deltas: 100% (284/284), done.
+~/LLM$ cd alpaca.cpp/
+~/LLM/alpaca.cpp$ make chat
+~/LLM/alpaca.cpp$ ls
+chat                    ggml.c   Makefile      screencast.gif
+chat.cpp                ggml.h   quantize.cpp  utils.cpp
+CMakeLists.txt          ggml.o   quantize.sh   utils.h
+convert-pth-to-ggml.py  LICENSE  README.md     utils.o
+</pre>
+</div></li>
+<li><p>
+Now, let&rsquo;s locate a database to provide data for the system. You
+can download the required database from the following link:
+<a href="https://huggingface.co/Sosaka/Alpaca-native-4bit-ggml/tree/main">https://huggingface.co/Sosaka/Alpaca-native-4bit-ggml/tree/main</a>
+Download the <b>ggml-alpaca-7b-q4.bin</b> file and place it inside the
+<b>~/LLM/alpaca.cpp</b> directory. To do so, click on the downward arrow
+icon, as illustrated in the figure below.
+</p>
+
+
+<figure id="org13403eb">
+<img src="alpaca-db.png" alt="alpaca-db.png">
+
+</figure></li>
+
+<li><p>
+On my machine, the file is located in the ~/Downloads/ directory. Let&rsquo;s move it to the directory where the chat application is located. Once we have completed the transfer, we can proceed to test the program.
+</p>
+
+<pre class="example" id="org3dbfac2">
+~/LLM/alpaca.cpp$ mv ~/Downloads/ggml-alpaca-7b-q4.bin .
+~/LLM/alpaca.cpp$ ./chat -m ./ggml-alpaca-7b-q4.bin
+== Running in chat mode. ==
+ - Press Ctrl+C to interject at any time.
+ - Press Return to return control to LLaMA.
+ - If you want to submit another line, end your input in '\'.
+
+&gt; I am a physician. Give a few suggestions on how to treat melanoma.
+1. Surgery - The most common treatment for melanoma is surgical removal of the tumor
+and surrounding tissue, as well as possible lymph node dissection depending upon the
+stage of disease.
+2. Chemotherapy – In cases where there’s a high risk of metastasis or recurrence, chemo
+may be used in combination with surgery to improve survival rates.  
+3. Immunotherapies - These treatments work by boosting and harnessing the body's own
+immune system to fight cancer cells more effectively.
+4. Targeted Therapy – This type of treatment targets specific mutations or proteins
+expressed in melanoma, helping to block their growth and spread.
+&gt;
+</pre></li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-orge7c71db" class="outline-3">
+<h3 id="orge7c71db">An Experiment: calling a Bigloo Scheme function from C</h3>
+<div class="outline-text-3" id="text-orge7c71db">
+<p>
+Our ultimate goal is to write functions in Scheme, export them to C++ and gcc, and utilize string transformations to refine Alpaca&rsquo;s responses to align with our specific requirements. 
+</p>
+
+<p>
+To learn how we can call Scheme from C, let’s do the following experiment:
+</p>
+
+<ol class="org-ol">
+<li>Let’s begin by downloading Bigloo Scheme. Download the tar ball (.tgz) file from <a href="https://www-sop.inria.fr/mimosa/fp/Bigloo/download.html">https://www-sop.inria.fr/mimosa/fp/Bigloo/download.html</a>.</li>
+<li><p>
+Execute the commands mentioned below in the given order: tar xfvz, ./configure, make, and finally, sudo make install. 
+</p>
+<div class="org-src-container">
+<pre class="src src-shell">~$ mkdir bgl
+~$ cd bgl
+~/bgl$ cp ../src/bigloo-latest.tar.gz .
+~/bgl$ tar xfvz bigloo-latest.tar.gz
+ ~/bgl/bigloo-latest$ ./configure
+~/bgl/bigloo-latest$ make
+~/bgl/bigloo-latest$ sudo make install
+~/bgl/bigloo-latest$ cd ..
+~/bgl$ mkdir cinterop
+~/bgl$ cd cinterop
+~/bgl/cinterop$ emacs -nw bfib.scm
+</pre>
+</div></li>
+<li><p>
+Type the following program in the Emacs buffer then save it.
+</p>
+<div class="org-src-container">
+<pre class="src src-scheme"><span class="org-comment-delimiter">;; </span><span class="org-comment">File: bfib.scm</span>
+<span class="org-comment-delimiter">;; </span><span class="org-comment">Compile with the following lines:</span>
+<span class="org-comment-delimiter">;; </span><span class="org-comment">gcc cfib.c -c</span>
+<span class="org-comment-delimiter">;; </span><span class="org-comment">bigloo -copt "-DBIGLOO_MAIN=initbigloo" cfib.o bfib.scm -o bf.x  </span>
+
+(module example
+  (<span class="org-keyword">export</span> (fib::long <span class="org-builtin">::long</span>))
+  (<span class="org-keyword">export</span> (upc::string <span class="org-builtin">::string</span>))
+  (extern (<span class="org-keyword">export</span> upc <span class="org-string">"scheme_upc"</span>))
+  (extern (<span class="org-keyword">export</span> fib <span class="org-string">"scheme_fib"</span>)))
+
+(<span class="org-keyword">define</span> (<span class="org-function-name">upc</span> s)
+  (string-upcase s))
+
+(<span class="org-keyword">define</span> (<span class="org-function-name">fib</span> x)
+  (<span class="org-keyword">if</span> (&lt; x 2)
+      1
+      (+ (fib (- x 1)) (fib (- x 2)))))
+</pre>
+</div>
+<p>
+The upc function has particular significance for our goal. As it
+  performs string transformations, it constitutes a proof of concept
+  that we could ultimately enhance and customize Alpaca&rsquo;s responses
+  to suit our specific needs.
+</p></li>
+<li><p>
+Let&rsquo;s now write the C program. Type the command below on a shell to open emacs:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-shell">~/bgl/cinterop$ emacs -nw cfib.c
+</pre>
+</div></li>
+<li><p>
+Type the following program in the emacs buffer then save it.
+</p>
+<div class="org-src-container">
+<pre class="src src-C"><span class="org-comment-delimiter">// </span><span class="org-comment">File: cfib.c</span>
+<span class="org-preprocessor">#include</span> <span class="org-string">&lt;stdio.h&gt;</span>
+<span class="org-preprocessor">#include</span> <span class="org-string">&lt;stdlib.h&gt;</span>
+<span class="org-preprocessor">#include</span> <span class="org-string">&lt;math.h&gt;</span>
+
+<span class="org-type">long</span> <span class="org-function-name">scheme_fib</span>(<span class="org-type">long</span> <span class="org-variable-name">n</span>);
+<span class="org-type">char</span> *<span class="org-function-name">scheme_upc</span>(<span class="org-type">char</span> *<span class="org-variable-name">s</span>);
+
+<span class="org-type">int</span> <span class="org-function-name">main</span>(<span class="org-type">int</span> <span class="org-variable-name">argc</span>, <span class="org-type">char</span> *<span class="org-variable-name">argv</span>[]) {
+  <span class="org-keyword">if</span> (argc != 2) {
+    printf(<span class="org-string">"Usage: %s n\n"</span>, argv[0]);
+  }
+  <span class="org-type">long</span> <span class="org-variable-name">n</span> = (<span class="org-type">long</span>) atoi(argv[1]);
+  printf(<span class="org-string">"Fib(%ld) = %ld\n%s\n"</span>, n, scheme_fib(n), scheme_upc(<span class="org-string">"era"</span>));
+  <span class="org-keyword">return</span> 0;
+}
+</pre>
+</div></li>
+<li><p>
+Now let’s compile and test the two programs above.
+</p>
+<div class="org-src-container">
+<pre class="src src-shell">~/bgl/cinterop$ gcc cfib.c -c
+~/bgl/cinterop$ bigloo -copt <span class="org-string">"-DBIGLOO_MAIN=initbigloo"</span> cfib.o bfib.scm -o bf.x
+~/bgl/cinterop$ ls
+bfib.o  bfib.scm  bf.x  cfib.c  cfib.o
+~/bgl/cinterop$ ./bf.x 6
+<span class="org-function-name">Fib</span>(6) = 13
+ERA
+</pre>
+</div></li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-orgd2bfbc0" class="outline-3">
+<h3 id="orgd2bfbc0">Integrating a Bigloo Scheme function into Alpaca</h3>
+<div class="outline-text-3" id="text-orgd2bfbc0">
+<p>
+As you saw in the experiment above, if you are proficient in programming and using GCC&rsquo;s compilers to translate code into executable programs, then you have the ability to build hybrid programs. A competent programmer is unhesitant about combining languages, provided that both languages exhibit speed and efficiency. While a skilled programmer could write an LLM using Bigloo or Common Lisp, it would require a minimum of one year. However, thanks to the efforts of Meta and Stanford, they have already undertaken this task for us by providing us with their C++ code. Hence, we can readily utilize their code for our purposes. Let’s start by cloning Alpaca’s source code.
+</p>
+
+<ol class="org-ol">
+<li><p>
+Type the commands below
+</p>
+<div class="org-src-container">
+<pre class="src src-shell">~/bgl/cinterop$ cd ..
+~/bgl$ ls
+bigloo-latest  bigloo-latest.tar.gz  cinterop
+~/bgl$ git clone https://github.com/antimatter15/alpaca.cpp
+Cloning into <span class="org-string">'alpaca.cpp'</span>...
+~/bgl$ cd alpaca.cpp/
+~/bgl/alpaca.cpp$
+</pre>
+</div></li>
+<li><p>
+Next, let’s write a Bigloo Scheme program that defines and exports function upc. This time, let’s save the program file in Alpaca’s directory.
+</p>
+<div class="org-src-container">
+<pre class="src src-shell">~/bgl/alpaca.cpp$ emacs -nw chk.scm
+</pre>
+</div>
+<div class="org-src-container">
+<pre class="src src-scheme"><span class="org-comment">#| Compile:</span>
+<span class="org-comment">$ g++ chat.cpp -c</span>
+<span class="org-comment">$ bigloo -copt "-DBIGLOO_MAIN=bigm -pthread -lstdc++"\</span>
+<span class="org-comment">   chk.scm chat.o ggml.o utils.o -o bchat</span>
+<span class="org-comment">|#</span>
+
+(module check
+  (<span class="org-keyword">export</span> (upc::string <span class="org-builtin">::string</span>))
+  (extern (<span class="org-keyword">export</span> upc <span class="org-string">"scheme_upc"</span>)))
+
+(<span class="org-keyword">define</span> (<span class="org-function-name">upc</span> s)
+  (string-upcase s))
+</pre>
+</div></li>
+<li><p>
+Alright, let&rsquo;s proceed with a modification in the Makefile to utilize the default gcc compiler, the same gcc compiler that you used to compile Bigloo. We want to ensure compatibility and avoid any potential issues. Open the Makefile in Emacs and search for the the lines below
+</p>
+<div class="org-src-container">
+<pre class="src src-shell">CFLAGS   = -I.              -O3 -DNDEBUG -std=c11   -fPIC
+CXXFLAGS = -I. -I./examples -O3 -DNDEBUG -std=c++11 -fPIC
+</pre>
+</div></li>
+<li><p>
+Let’s remove -std=c11 and -std=c++11. Here&rsquo;s the final version of the two lines in the Makefile:
+</p>
+<div class="org-src-container">
+<pre class="src src-shell">CFLAGS   = -I.              -O3 -DNDEBUG -fPIC  <span class="org-comment-delimiter"># </span><span class="org-comment">-std=c11   -fPIC</span>
+CXXFLAGS = -I. -I./examples -O3 -DNDEBUG -fPIC  <span class="org-comment-delimiter"># </span><span class="org-comment">-std=c++11 -fPIC</span>
+</pre>
+</div></li>
+<li><p>
+Now, let&rsquo;s execute a make command to generate the object files.
+</p>
+<div class="org-src-container">
+<pre class="src src-shell">~/bgl/alpaca.cpp$ make chat
+~/bgl/alpaca.cpp$ ls
+chat                    ggml.c   Makefile      screencast.gif
+chat.cpp                ggml.h   quantize.cpp  utils.cpp
+CMakeLists.txt          ggml.o   quantize.sh   utils.h
+convert-pth-to-ggml.py  LICENSE  README.md     utils.o
+</pre>
+</div></li>
+<li><p>
+Let&rsquo;s perform a test to verify if changing the default from c11 to gcc has affected the program&rsquo;s functionality.
+</p>
+<div class="org-src-container">
+<pre class="src src-shell">~/bgl/alpaca.cpp$ cp ~/LLM/alpaca.cpp/ggml-alpaca-7b-q4.bin .
+~/bgl/alpaca.cpp$ ./chat
+</pre>
+</div>
+
+<figure id="org9c6ed8b">
+<img src="chat.png" alt="chat.png">
+
+</figure></li>
+<li>At this point, we are going to undertake a delicate operation, which involves wrapping the output of Alpaca with a string-to-string transformation function in Bigloo. Let&rsquo;s proceed with editing the chat.cpp function.</li>
+<li><p>
+Add the prototype for the Scheme function we wrote to the chat.cpp program
+</p>
+
+
+<figure id="orga3bfb89">
+<img src="code1.png" alt="code1.png">
+
+</figure>
+
+<p>
+To facilitate the Ctrl-C/Ctrl-V, we provide the source code below
+</p>
+<div class="org-src-container">
+<pre class="src src-c++"><span class="org-keyword">extern</span> <span class="org-string">"C"</span> <span class="org-type">char</span>* <span class="org-function-name">scheme_upc</span>(<span class="org-type">char</span>* <span class="org-variable-name">s</span>);
+</pre>
+</div></li>
+<li><p>
+Perform a search for &rsquo;display text&rsquo; to locate the following block of code.
+</p>
+
+
+<figure id="orgfcb5fc1">
+<img src="code2.png" alt="code2.png">
+
+</figure></li>
+<li><p>
+Apply function scheme<sub>upc</sub> to the string generated by the LLM. The block should be updated as follows:
+</p>
+
+
+<figure id="org9b3f19a">
+<img src="code3.png" alt="code3.png">
+
+</figure></li>
+
+<li><p>
+To facilitate Ctrl-C/Ctrl-V, here is the text from the block:
+</p>
+<div class="org-src-container">
+<pre class="src src-c++"><span class="org-comment-delimiter">// </span><span class="org-comment">display text</span>
+       <span class="org-keyword">if</span> (<span class="org-negation-char">!</span>input_noecho) {
+         <span class="org-keyword">for</span> (<span class="org-keyword">auto</span> <span class="org-variable-name">id</span> : embd) {
+           <span class="org-comment-delimiter">//</span><span class="org-comment">printf("%s", vocab.id_to_token[id].c_str());</span>
+           printf(<span class="org-string">"%s"</span>, scheme_upc((<span class="org-type">char</span> *)vocab.id_to_token[id].c_str()));
+         }
+           fflush(stdout);
+       }
+</pre>
+</div></li>
+<li><p>
+The command below compiles everything.
+</p>
+<div class="org-src-container">
+<pre class="src src-shell">~/bgl/alpaca.cpp$ g++ chat.cpp -c
+~/bgl/alpaca.cpp$ bigloo -copt <span class="org-string">"-DBIGLOO_MAIN=bigm -pthread -lstdc++"</span><span class="org-sh-escaped-newline">\</span>
+                  chk.scm chat.o ggml.o utils.o -o bchat
+~/bgl/alpaca.cpp$
+</pre>
+</div>
+<p>
+The compilation option <code>-DBIGLOO_MAIN=bigm</code> prevents Bigloo from generating a main function since we already have a main definition in C. As Bigloo requires an initialization function, we recommend naming it bigm, although you can choose any other appropriate name.
+</p></li>
+<li><p>
+Finally, let’s test it.
+</p>
+<div class="org-src-container">
+<pre class="src src-shell">~/bgl/alpaca.cpp$ ./bchat
+</pre>
+</div>
+
+
+<figure id="org61361c9">
+<img src="chat1.png" alt="chat1.png">
+
+</figure>
+
+<p>
+We conducted the test in Emacs&rsquo; eshell. As you can observe, the function defined in Bigloo successfully converted all the letters to uppercase. This showcases the capability of writing intricate programs to manipulate text as needed.
+</p>
+
+<p>
+Voilà! From this point onwards, you have the capability to introduce restricted Artificial Intelligence into any LLM.
+</p></li>
+</ol>
+</div>
+</div>
+</section>
+</main>
+<footer id="postamble" class="status">
+<div class='footer'>
+  Copyright © 2020 <a href='mailto:m3santos@ryerson.ca'>Marcus Santos.</a><br>
+  Inspired by <a href='https://nicolas.petton.fr'>https://nicolas.petton.fr</a> <br>
+  Last updated on Jun 30, 2023. Generated using <a href="https://www.gnu.org/software/emacs/">Emacs</a> 28.1 (<a href="https://orgmode.org">Org</a> mode 9.4.6).
+</div>
+</footer>
+</body>
+</html>
