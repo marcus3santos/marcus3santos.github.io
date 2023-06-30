@@ -85,15 +85,15 @@ This article provides the installation steps for <a href="https://github.com/yit
 
 
 
-<section id="outline-container-org72f3334" class="outline-2">
-<h2 id="org72f3334">Installation</h2>
-<div class="outline-text-2" id="text-org72f3334">
+<section id="outline-container-org2cbcd76" class="outline-2">
+<h2 id="org2cbcd76">Installation</h2>
+<div class="outline-text-2" id="text-org2cbcd76">
 </div>
-<div id="outline-container-org3ed50e5" class="outline-3">
-<h3 id="org3ed50e5">Lisp compiler</h3>
-<div class="outline-text-3" id="text-org3ed50e5">
+<div id="outline-container-org5dbcfc9" class="outline-3">
+<h3 id="org5dbcfc9">Lisp compiler</h3>
+<div class="outline-text-3" id="text-org5dbcfc9">
 
-<div id="orgbd67bf9" class="figure">
+<div id="orgd9597ca" class="figure">
 <p><img src="https://www.lisperati.com/lisplogo_fancy_256.png" alt="lisplogo_fancy_256.png" />
 </p>
 </div>
@@ -104,44 +104,44 @@ On both Linux and OS X, we’ll use Steel Bank Common Lisp (SBCL) as the Common 
 </p>
 </div>
 
-<div id="outline-container-orgd72df76" class="outline-4">
-<h4 id="orgd72df76">Ubuntu/Debian</h4>
-<div class="outline-text-4" id="text-orgd72df76">
+<div id="outline-container-orgcbedbbe" class="outline-4">
+<h4 id="orgcbedbbe">Ubuntu/Debian</h4>
+<div class="outline-text-4" id="text-orgcbedbbe">
 <p>
 To install SBCL on either, just run:
 </p>
-<pre class="example" id="org7d08b67">
+<pre class="example" id="orga64637b">
 $ sudo apt-get install sbcl
 </pre>
 </div>
 </div>
 
-<div id="outline-container-org69885ee" class="outline-4">
-<h4 id="org69885ee">Arch Linux</h4>
-<div class="outline-text-4" id="text-org69885ee">
+<div id="outline-container-org8710ac1" class="outline-4">
+<h4 id="org8710ac1">Arch Linux</h4>
+<div class="outline-text-4" id="text-org8710ac1">
 <p>
 Since SBCL is available from the official repositories, you can install it with:
 </p>
-<pre class="example" id="org03702d3">
+<pre class="example" id="org98f3860">
 $ sudo pacman -S sbcl
 </pre>
 </div>
 </div>
-<div id="outline-container-org9ab3828" class="outline-4">
-<h4 id="org9ab3828">OS X</h4>
-<div class="outline-text-4" id="text-org9ab3828">
+<div id="outline-container-orgd1359c9" class="outline-4">
+<h4 id="orgd1359c9">OS X</h4>
+<div class="outline-text-4" id="text-orgd1359c9">
 <p>
 To install SBCL on OS X, just do:
 </p>
-<pre class="example" id="orgae4b289">
+<pre class="example" id="org64f8bdf">
 $ brew install sbcl
 </pre>
 </div>
 </div>
 
-<div id="outline-container-org20718e2" class="outline-4">
-<h4 id="org20718e2">Windows</h4>
-<div class="outline-text-4" id="text-org20718e2">
+<div id="outline-container-orgea301ac" class="outline-4">
+<h4 id="orgea301ac">Windows</h4>
+<div class="outline-text-4" id="text-orgea301ac">
 <p>
 On Windows, install the Windows binary available at the <a href="http://www.sbcl.org/platform-table.html">SBCL download page</a>.
 </p>
@@ -149,22 +149,22 @@ On Windows, install the Windows binary available at the <a href="http://www.sbcl
 </div>
 </div>
 
-<div id="outline-container-orgb81aab9" class="outline-3">
-<h3 id="orgb81aab9">Jupyter</h3>
-<div class="outline-text-3" id="text-orgb81aab9">
+<div id="outline-container-orga6a124b" class="outline-3">
+<h3 id="orga6a124b">Jupyter</h3>
+<div class="outline-text-3" id="text-orga6a124b">
 <ol class="org-ol">
 <li>Install Python version 3.3 or greater. Python is a requirement for installing Jupyterlab.</li>
 <li><p>
 Install Jupyterlab
 </p>
-<pre class="example" id="orgc5efaa8">
+<pre class="example" id="org60a2dd4">
 pip install jupyterlab
 </pre></li>
 <li>Install Quicklisp by executing on the shell the commands shown in the gray box of <a href="https://www.quicklisp.org/beta/#installation">this example of a quicklisp installation session</a>.</li>
 <li><p>
 Finally, Quicklisp install <i>common-lisp-jupyter</i>. Type the command below on the shell terminal
 </p>
-<pre class="example" id="org2c6f3af">
+<pre class="example" id="orgb934f1d">
 $ sbcl
 * (ql:update-dist "quicklisp")
 * (ql:quickload :common-lisp-jupyter)
@@ -176,14 +176,14 @@ $ sbcl
 </div>
 </section>
 
-<section id="outline-container-org4914ece" class="outline-2">
-<h2 id="org4914ece">Running common-lisp-jupyter</h2>
-<div class="outline-text-2" id="text-org4914ece">
+<section id="outline-container-org3a99cfa" class="outline-2">
+<h2 id="org3a99cfa">Running common-lisp-jupyter</h2>
+<div class="outline-text-2" id="text-org3a99cfa">
 <ol class="org-ol">
 <li><p>
 Type the following command at the shell terminal
 </p>
-<pre class="example" id="org1083a21">
+<pre class="example" id="org134881a">
 $ jupyter notebook
 </pre>
 <p>
@@ -199,7 +199,7 @@ This will start the common-lisp REPL. You can now type Lisp expressions to be ex
 <p>
 Type the expressions below then click on <code>Run</code>
 </p>
-<pre class="example" id="orgac21c76">
+<pre class="example" id="org4c577b9">
 (defvar x 8)
 (/ x 3)
 (+ (* x x) 9)

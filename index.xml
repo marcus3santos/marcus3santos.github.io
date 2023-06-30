@@ -14,8 +14,8 @@
   <link>http://example.com/</link>
   <description><![CDATA[]]></description>
   <language>en</language>
-  <pubDate>Fri, 30 Jun 2023 08:49:10 -0400</pubDate>
-  <lastBuildDate>Fri, 30 Jun 2023 08:49:10 -0400</lastBuildDate>
+  <pubDate>Fri, 30 Jun 2023 09:25:48 -0400</pubDate>
+  <lastBuildDate>Fri, 30 Jun 2023 09:25:48 -0400</lastBuildDate>
   <generator>Emacs 28.1 Org-mode 9.4.6</generator>
   <webMaster>marcus@marcus-ThinkPad-X1-Carbon-Gen-10 (Marcus Santos)</webMaster>
   <image>
@@ -28,15 +28,11 @@
     <li><p>
       <b><a href="interfacing-lisp-alpaca.html">Exploring and Harnessing the Power of a Local Large Language Model (LLM)</a></b>
     </p>
-    <p class='pubdate'>by Marcus Santos on Jun 30, 2023.</p></li>
+    <p class='pubdate'>by Della-Vos Group on Jun 30, 2023.</p></li>
     <li><p>
       <b><a href="lisp-from-python.html">Calling Lisp from Python</a></b>
     </p>
-    <p class='pubdate'>by Marcus Santos on Jun 29, 2023.</p></li>
-    <li><p>
-      <b><a href="from-py2lisp.html">From Python to Lisp</a></b>
-    </p>
-    <p class='pubdate'>by Marcus Santos on Jun 29, 2023.</p></li>
+    <p class='pubdate'>by Della-Vos Group on Jun 30, 2023.</p></li>
     <li><p>
       <b><a href="lisp-ide.html">Getting your Emacs/Slime-based Lisp programming environment up and running for CPS305</a></b>
     </p>

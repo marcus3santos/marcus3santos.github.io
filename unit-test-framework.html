@@ -87,13 +87,13 @@ This article provides a use case for that unit test language. For more details a
 We assume you are using either emacs+slime or common-lisp-jupyter to load and run your programs. 
 </p>
 
-<section id="outline-container-orgeb32c3e" class="outline-2">
-<h2 id="orgeb32c3e">Creating and running test cases: steps</h2>
-<div class="outline-text-2" id="text-orgeb32c3e">
+<section id="outline-container-org07f20e6" class="outline-2">
+<h2 id="org07f20e6">Creating and running test cases: steps</h2>
+<div class="outline-text-2" id="text-org07f20e6">
 </div>
-<div id="outline-container-org232e7bb" class="outline-3">
-<h3 id="org232e7bb">Step 1: defining the unit test language</h3>
-<div class="outline-text-3" id="text-org232e7bb">
+<div id="outline-container-org1b1fc43" class="outline-3">
+<h3 id="org1b1fc43">Step 1: defining the unit test language</h3>
+<div class="outline-text-3" id="text-org1b1fc43">
 <ul class="org-ul">
 <li><p>
 <b>Emacs+slime users</b>: <code>C-x C-f</code> to create a new buffer called <b>unit-test.lisp</b>, copy paste the program below in a buffer, <code>C-x C-s</code> to save it, then load the program by executing the command below on the REPL:
@@ -137,9 +137,9 @@ We assume you are using either emacs+slime or common-lisp-jupyter to load and ru
 </div>
 </div>
 
-<div id="outline-container-orgd2da68d" class="outline-3">
-<h3 id="orgd2da68d">Step 2: creating your lisp program</h3>
-<div class="outline-text-3" id="text-orgd2da68d">
+<div id="outline-container-org54d44d6" class="outline-3">
+<h3 id="org54d44d6">Step 2: creating your lisp program</h3>
+<div class="outline-text-3" id="text-org54d44d6">
 <p>
 Suppose we would like to test the lisp program below consisting of the definition of function COUNT-VOWELS.
 </p>
@@ -172,9 +172,9 @@ Suppose we would like to test the lisp program below consisting of the definitio
 </div>
 
 
-<div id="outline-container-org55e9252" class="outline-3">
-<h3 id="org55e9252">Step 3: creating the unit tests</h3>
-<div class="outline-text-3" id="text-org55e9252">
+<div id="outline-container-orga1f0b99" class="outline-3">
+<h3 id="orga1f0b99">Step 3: creating the unit tests</h3>
+<div class="outline-text-3" id="text-orga1f0b99">
 <p>
 Now it is time to define the unit tests for the functions of your program.
 </p>
@@ -205,9 +205,9 @@ Now it is time to define the unit tests for the functions of your program.
 </div>
 
 
-<div id="outline-container-org77a6b91" class="outline-3">
-<h3 id="org77a6b91">Step4: running your tests</h3>
-<div class="outline-text-3" id="text-org77a6b91">
+<div id="outline-container-org292f003" class="outline-3">
+<h3 id="org292f003">Step4: running your tests</h3>
+<div class="outline-text-3" id="text-org292f003">
 <p>
 To run your tests,
 </p>
@@ -227,9 +227,9 @@ T
 </div>
 </section>
 
-<section id="outline-container-org660459f" class="outline-2">
-<h2 id="org660459f">More on assertions</h2>
-<div class="outline-text-2" id="text-org660459f">
+<section id="outline-container-orgecbfb94" class="outline-2">
+<h2 id="orgecbfb94">More on assertions</h2>
+<div class="outline-text-2" id="text-orgecbfb94">
 <ul class="org-ul">
 <li>The last step in writing a test is to validate the output against a known response (this is called an <b>assertion</b>)</li>
 <li>Best practices:
