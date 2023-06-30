@@ -75,9 +75,9 @@
 <span class="subtitle">Published on Jan 25, 2021 by Marcus Santos.</span>
 </h1>
 
-<section id="outline-container-org2e4b47c" class="outline-2">
-<h2 id="org2e4b47c">Preamble</h2>
-<div class="outline-text-2" id="text-org2e4b47c">
+<section id="outline-container-orgd1ea74a" class="outline-2">
+<h2 id="orgd1ea74a">Preamble</h2>
+<div class="outline-text-2" id="text-orgd1ea74a">
 <p>
 This quick tutorial assumes you already know the basics of programming in Lisp using Emacs/Slime, and that you have installed the <a href="https://github.com/vseloved/rutils">RUTILS</a> lisp package.
 </p>
@@ -88,9 +88,9 @@ As we will be plotting algorithm performance data, I also assume you are familia
 </div>
 </section>
 
-<section id="outline-container-org6281543" class="outline-2">
-<h2 id="org6281543">Common Lisp&rsquo;s timing untilities</h2>
-<div class="outline-text-2" id="text-org6281543">
+<section id="outline-container-orgd153fa6" class="outline-2">
+<h2 id="orgd153fa6">Common Lisp&rsquo;s timing untilities</h2>
+<div class="outline-text-2" id="text-orgd153fa6">
 <p>
 Common Lisp provides a standard utility for performance measurement, TIME:
 </p>
@@ -170,9 +170,9 @@ An example of using the TIMEF macro to obtain the runtime for a call to function
 </div>
 </section>
 
-<section id="outline-container-org362bc4b" class="outline-2">
-<h2 id="org362bc4b">Timing a function considering different parameter values</h2>
-<div class="outline-text-2" id="text-org362bc4b">
+<section id="outline-container-orged13a5b" class="outline-2">
+<h2 id="orged13a5b">Timing a function considering different parameter values</h2>
+<div class="outline-text-2" id="text-orged13a5b">
 <p>
 The steps below show how to use TIMEF to measure the runtime of function FIND for different array sizes. 
 </p>
@@ -180,7 +180,7 @@ The steps below show how to use TIMEF to measure the runtime of function FIND fo
 <p>
 <b>Step 1</b>: Using the terminal shell, type the following commands to create a dedicated folder for your experiment, and open emacs to edit a new file called <b>timing.lisp</b>
 </p>
-<pre class="example" id="orgdf660a4">
+<pre class="example" id="org1041d00">
 $ cd
 $ mkdir timing
 $ cd timing
@@ -220,7 +220,7 @@ $ emacs -nw timing-experiment.lisp
 <p>
 <b>Step 5</b>: Type the following commands on the shell:
 </p>
-<pre class="example" id="org021d627">
+<pre class="example" id="org03ddfa0">
 $ gnuplot   # This command will open the gnuplot shell
 gnuplot&gt; set xlabel "Array size"
 gnuplot&gt; set ylabel "Runtime"
