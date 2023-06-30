@@ -10,30 +10,41 @@ strengths of both environments for your projects.
 
 * Why
 
-There are several reasons why one might want to call Common Lisp
-functions from a Python program:
+  The question of why one would want to call Common Lisp functions
+  from Python programs is an intriguing one. When posed with this question,
+ChatGPT provided the response below.
 
-1. *Leveraging existing Common Lisp libraries*: Common Lisp has a rich
-   ecosystem of libraries and frameworks that may offer functionality
-   not readily available in Python. By calling Common Lisp functions,
-   you can tap into these libraries and utilize their capabilities
-   within your Python application.
-2. *Performance and optimization*: Common Lisp is known for its efficiency
-   and powerful optimization capabilities. If you have
-   performance-critical parts of your code that could benefit from
-   Common Lisp's speed and optimization features, calling Common Lisp
-   functions from Python can help improve overall execution time.
-3. *Legacy code integration*: In situations where you have legacy code
-   or systems written in Common Lisp, calling Common Lisp functions
-   from Python can provide a way to interface with and extend those
-   existing systems while leveraging Python's broader ecosystem and
-   ease of development.
+#+begin_quote
+There are multiple compelling reasons for incorporating Common Lisp
+functions into Python programs:
 
-Overall, calling Common Lisp functions from Python offers flexibility,
-access to specialized libraries, and the ability to combine the
-strengths of both languages, allowing you to tackle complex problems
-and build powerful applications.
+1. *Leveraging existing Common Lisp libraries*: Common Lisp boasts a
+   diverse ecosystem of libraries and frameworks that provide unique
+   functionalities not readily available in Python. By calling Common
+   Lisp functions, you can harness the power of these libraries and
+   seamlessly integrate their capabilities within your Python
+   application.
 
+2. *Performance and optimization*: Common Lisp is renowned for its
+   efficiency and robust optimization capabilities. If you have
+   performance-critical sections in your code that could benefit from
+   Common Lisp's speed and optimization features, invoking Common Lisp
+   functions from Python can significantly enhance overall execution
+   time.
+
+3. *Legacy code integration*: When dealing with legacy code or systems
+   written in Common Lisp, calling Common Lisp functions from Python
+   enables seamless interfacing and extension of these existing
+   systems. This integration allows you to leverage Python's expansive
+   ecosystem and development ease while capitalizing on the
+   functionality already present in Common Lisp.
+#+end_quote
+
+In summary, calling Common Lisp functions from Python empowers you
+with flexibility, access to specialized libraries, and the ability to
+harness the strengths of both languages. This integration opens doors
+to effectively tackle complex problems and construct robust
+applications that leverage the best of both worlds.
 * What you need
    
 1. On Linux, you should begin by installing python and sbcl. To
