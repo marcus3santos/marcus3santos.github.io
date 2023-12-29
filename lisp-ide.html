@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- Sep 12, 2023 -->
+<!-- Dec 29, 2023 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Getting your Emacs/Slime-based Lisp programming environment up and running for CPS305</title>
@@ -77,33 +77,17 @@
 </h1>
 <blockquote>
 <p>
-&ldquo;Lisp is worth learning for the profound enlightenment experience you
-will have when you finally get it; that experience will make you a
-better programmer for the rest of your days, even if you never
-actually use Lisp itself a lot.&rdquo; &#x2014; Eric Raymond, &ldquo;How to Become a
-Hacker&rdquo;
-</p>
-</blockquote>
-
-<blockquote>
-<p>
 &ldquo;Lisp is the red pill.&rdquo; &#x2014; John Fraser <a href="https://groups.google.com/g/comp.lang.lisp/c/5VW9lRDb-ww/m/KKygqY5n4E4J">Source</a>
 </p>
 </blockquote>
 
-<section id="outline-container-org9bbd4dd" class="outline-2">
-<h2 id="org9bbd4dd">Introduction</h2>
-<div class="outline-text-2" id="text-org9bbd4dd">
+<section id="outline-container-org21a25a3" class="outline-2">
+<h2 id="org21a25a3">Introduction</h2>
+<div class="outline-text-2" id="text-org21a25a3">
 <p>
-Paul Graham explains in his book <i>On Lisp</i> that the Lisp programmer
-does not directly attack a problem: they create a <i>tower of languages</i>
-specialized in the problem so that the solution is simple and
-direct. You may need to work on several floors of this tower yourself,
-but it is also possible to outsource some floors. Therefore, before
-you start programming in Lisp, this tutorial will teach you how to
-install and set up the following &ldquo;specialized floors&rdquo; of the Lisp
-programming tower: 
+The Lisp programming environment consists of the following components:
 </p>
+
 <ul class="org-ul">
 <li>text editor (<b>Emacs</b>); you may be tempted to use another text editor
 but I strongly encourage you to use emacs. However, if you insist on
@@ -117,17 +101,17 @@ correctness.</li>
 </ul>
 
 <p>
-Emacs and SBCL have been successfully installed on all lab
-computers. To complete the setup of your programming environment,
+Emacs and SBCL have been installed on all lab
+computers. To complete the setup of the programming environment,
 please adhere to the instructions below for installing the additional
 components within your home directory on the lab computers.
 </p>
 </div>
 </section>
 
-<section id="outline-container-orgb2fbe8d" class="outline-2">
-<h2 id="orgb2fbe8d">Installation and configuration</h2>
-<div class="outline-text-2" id="text-orgb2fbe8d">
+<section id="outline-container-orga9c7ed9" class="outline-2">
+<h2 id="orga9c7ed9">Emacs Configuration and Quicklisp Installation</h2>
+<div class="outline-text-2" id="text-orga9c7ed9">
 <ol class="org-ol">
 <li>First and foremost, you will need to understand how to run simple
 commands on a Linux or Mac terminal window. Navigate to
@@ -143,9 +127,9 @@ Quicklisp.</li>
 </div>
 </section>
 
-<section id="outline-container-orge5c78ba" class="outline-2">
-<h2 id="orge5c78ba">Installing CodeGrader</h2>
-<div class="outline-text-2" id="text-orge5c78ba">
+<section id="outline-container-orgb94b05c" class="outline-2">
+<h2 id="orgb94b05c">Installation of CodeGrader</h2>
+<div class="outline-text-2" id="text-orgb94b05c">
 <p>
 Type the commands below on a shell terminal to install CodeGrader:
 </p>
@@ -158,9 +142,9 @@ git clone https://github.com/marcus3santos/codegrader.git
 </div>
 </section>
 
-<section id="outline-container-org3aad453" class="outline-2">
-<h2 id="org3aad453">Configuring SBCL</h2>
-<div class="outline-text-2" id="text-org3aad453">
+<section id="outline-container-org7241f60" class="outline-2">
+<h2 id="org7241f60">Configuring SBCL</h2>
+<div class="outline-text-2" id="text-org7241f60">
 <ol class="org-ol">
 <li><p>
 Using a program text editor, open the following file located on your home directory
@@ -216,7 +200,7 @@ Your score: 0 (out of 100)
 <div class='footer'>
   Copyright © 2020 <a href='mailto:m3santos@ryerson.ca'>Marcus Santos.</a><br>
   Inspired by <a href='https://nicolas.petton.fr'>https://nicolas.petton.fr</a> <br>
-  Last updated on Sep 12, 2023. Generated using <a href="https://www.gnu.org/software/emacs/">Emacs</a> 28.1 (<a href="https://orgmode.org">Org</a> mode 9.4.6).
+  Last updated on Dec 29, 2023. Generated using <a href="https://www.gnu.org/software/emacs/">Emacs</a> 28.1 (<a href="https://orgmode.org">Org</a> mode 9.4.6).
 </div>
 </footer>
 </body>
